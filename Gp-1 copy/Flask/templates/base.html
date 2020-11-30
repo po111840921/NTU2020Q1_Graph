@@ -1,0 +1,16 @@
+<!--
+base.html這邊主要是放html架構、css、JS，html架構，代表這邊不是拿來寫主要的html，主要的html在home.html寫
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block head %}
+  {% endblock %}
+</head>
+<body>
+  {% block content %}
+  <h1>"Hello!"</h1>
+  {% endblock %}
+</body>
+</html>
