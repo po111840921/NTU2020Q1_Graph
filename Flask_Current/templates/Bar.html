@@ -1,0 +1,60 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/Users/Kyle/Downloads/bootstrap-4.0.0/favicon.ico">
+
+    <title>Power Analysis Tool</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <!-- Custom styles for this template -->
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename = 'bootstrap.min.css')}}">
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename = 'scrolling-nav.css')}}">
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename = 'cover copy.css')}}">
+  </head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">7th Team</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" href="http://127.0.0.1:5000/">Home</a>
+            <a class="nav-link active" href="http://127.0.0.1:5000/bar">Bar</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/curve">Curve</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/spotcurve">Spot Curve</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/foundingteam">Founding Team</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <form method="post" enctype="multipart/form-data">
+           <input type="file" name="file">
+           <input type="submit" value="submit">
+        </form>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p> <a href="https://getbootstrap.com/">Insurance Class</a>, by <a href="https://twitter.com/mdo">7th Team</a>.</p>
+        </div>
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/Users/Kyle/Desktop/Flask_Current/static/vendor/jquery/jquery.slim.min.map"><\/script>')</script>
+    <script src="/Users/Kyle/Desktop/Flask_Current/static/vendor/bootstrap/js/popper.min.js"></script>
+    <script src="/Users/Kyle/Desktop/Flask_Current/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
