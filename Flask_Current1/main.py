@@ -42,12 +42,12 @@ def bar():
 	      name = filename.split('.')[0]
 	      data.to_csv(f'/Users/Kyle/Desktop/Flask_Current/static/{name}.csv')
 	      return render_template("Bar.html",confirm = 1, send_file =file.filename) 
-
+'''
 	if request.method == 'GET':
 	   button = request.form['submit_button']
 	   if button == 'Do Something':
 	      return "abc"
-
+'''
 
 	return render_template("Bar.html",confirm = '', send_file = '')
 
