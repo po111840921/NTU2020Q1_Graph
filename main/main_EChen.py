@@ -3,8 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 import json
 from werkzeug.utils import secure_filename
 from linechart import linechart
+import cv2
 
-UPLOAD_FOLDER = 'C:\\python\\Flask_Current1\\static'
+UPLOAD_FOLDER = 'C:\\Users\\TsaiYiChen\\Flask_Current1\\static'
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -59,7 +60,6 @@ def bar_scuccess():
 					name = filename.split('.')[0]
 					data.to_csv(f'/Users/Kyle/Desktop/Flask_Current/static/{name}.csv')
 					return render_template("bar.html",confirm = 2) 
-					return redirect("/bar1")
 	return render_template("bar.html",confirm = 3)
 
 @app.route("/curve_home", methods=['GET', 'POST'])			
@@ -92,11 +92,12 @@ def submit_color_button_curve():
 		# x axis must be time axis
 		image.CurveRecognize()
 		image.LockCurve()
+		cv2.imwrite('C:\\Users\\TsaiYiChen\\Flask_Current1\\static\\output.jpg', image.photo)
 		image.smooth()
 		data = image.output()
 		name = filename_var.split('.')[0]
 		data.to_csv(f'C:\\Users\\TsaiYiChen\\Flask_Current1\\static\\{name}.csv')
-		return render_template("Curve.html",confirm = 3) 
+		return render_template("Curve.html",confirm = 3,send_file = filename_var) 
 	filename_var = session.get('filename_var', None)
 	session['filename_var'] = filename_var
 	return render_template("Curve.html", confirm = 2, send_file = filename_var)
@@ -105,13 +106,13 @@ def submit_color_button_curve():
 def go_to_next_page_curve1():
 	filename_var = session.get('filename_var', None)
 	session['filename_var'] = filename_var
-	return redirect("/curve_success") 
+	return redirect("/curve_success", confirm = 3, send_file = filename_var) 
 
 @app.route("/curve_success", methods=['GET', 'POST'])
 def curve_scuccess():
 	if request.method == 'POST':
 		filename_var = session.get('filename_var', None)
-	return render_template("Curve.html",confirm = 3)
+	return render_template("Curve.html",confirm = 3,send_file = filename_var)
 
 
 @app.route("/spotcurve_home", methods=['GET', 'POST'])			
