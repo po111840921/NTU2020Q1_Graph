@@ -26,8 +26,8 @@
           <h3 class="masthead-brand">7th Team</h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="http://127.0.0.1:5000/">Home</a>
-            <a class="nav-link active" href="http://127.0.0.1:5000/bar">Bar</a>
-            <a class="nav-link" href="http://127.0.0.1:5000/curve">Curve</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/bar">bar</a>
+            <a class="nav-link active" href="http://127.0.0.1:5000/curve_home">Curve</a>
             <a class="nav-link" href="http://127.0.0.1:5000/spotcurve">Spot Curve</a>
             <a class="nav-link" href="http://127.0.0.1:5000/foundingteam">Founding Team</a>
           </nav>
@@ -86,6 +86,8 @@
 
         {% if confirm == 3 %}
         <h1>Success!</h1>
+        <img src="{{ url_for('static',filename = 'output.jpg') }}" width="1000" height="400" align="middle">
+        <img src="{{ url_for('static',filename = send_file) }}" width="600" height="400" align="middle">
         {% endif %}
       </main>
 
