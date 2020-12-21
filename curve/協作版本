@@ -36,22 +36,57 @@
 
       <main role="main" class="inner cover">
 
-        <form method="post" enctype = "application/x-www-form-urlencoded" action="{{ url_for('submit_button') }}">
-          <input type="submit" name="submit_button" value="Do Something">
-          <input type="submit" name="submit_button" value="Do Something Else">
-        </form>
-          
-        <form method="post" enctype="multipart/form-data" action="{{ url_for('submit_file') }}">
+
+        {% if confirm == '' %} <!--上傳前介面--> 
+        <form method="post" enctype="multipart/form-data" action="{{ url_for('submit_file_curve') }}">
            <input type="file" name="file" value="submit_file">
-           <input type="submit" name ="file" value="submit_file">
+           <input type="submit" name ="file" value="Submit">
+        </form>
+        {% endif %}
+
+        {% if confirm == 1 %} <!--上傳後介面--> 
+
+        <h1>This is the photo you want to analyze.</h1>
+        <img src="{{ url_for('static',filename = send_file) }}" width="600" height="400" align="middle">
+        <form method="post" enctype = "application/x-www-form-urlencoded" action="{{ url_for('go_to_next_page_curve') }}">
+          <input type="submit" name="submit_button" value="Next Step">
+        </form>
+        {% endif %}
+
+        {% if confirm == 2 %} <!--上傳後介面--> 
+        <img src="{{ url_for('static',filename = send_file) }}" width="600" height="400" align="middle">
+        <h2>First: Decide the range of photo you want to analyze.</h2>
+        <form method="post" enctype = "application/x-www-form-urlencoded" action="{{ url_for('submit_color_button_curve') }}">
+          <div class="input-group mb-3">
+            <input type="text" name="Xaxis" class="form-control" placeholder="Range of X axis.  Example: [1024, 0] " aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2"></span>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="text" name="Yaxis" class="form-control" placeholder="Range of Y axis.  Example: [0, 768] " aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2"></span>
+            </div>
+          </div>
+        </form>
+        <h2>Second: Decide the color of curve you want to analyze.</h2>
+        <img src="{{ url_for('static',filename = 'colorbar.png') }}" width="508" height="25" align="middle">
+        <form method="post" enctype = "application/x-www-form-urlencoded" action="{{ url_for('submit_color_button_curve') }}">
+          <input type="submit" name="submit_button" value="Color 1">
+          <input type="submit" name="submit_button" value="Color 2">
+          <input type="submit" name="submit_button" value="Color 3">
+          <input type="submit" name="submit_button" value="Color 4">
+          <input type="submit" name="submit_button" value="Color 5">
+          <input type="submit" name="submit_button" value="Color 6">
+          <input type="submit" name="submit_button" value="Color 7">
         </form>
 
-        {% if confirm == 1 %}
-        <img src="{{ url_for('static',filename = send_file) }}" width="600" height="400" align="middle">
 
         {% endif %}
 
-        {% if confirm == 2 %}
+        {% if confirm == 3 %}
         <h1>FFFF</h1>
         {% endif %}
       </main>
