@@ -94,8 +94,9 @@ def submit_color_button_curve():
 		image.smooth()
 		data = image.output()
 		name = filename_var.split('.')[0]
-		data.to_csv(f'/Users/Kyle/Desktop/Flask_Current/static/{name}.csv')
-		return render_template("Curve.html",confirm = 3,send_file = filename_var, download = name+'.csv')
+		data.to_excel(f'/Users/Kyle/Desktop/Flask_Current/static/{name}.xlsx')
+		name1 = str(name)+'.xlsx'
+		return render_template("Curve.html",confirm = 3,send_file = filename_var, download = name1)
 	filename_var = session.get('filename_var', None)
 	session['filename_var'] = filename_var
 	return render_template("Curve.html", confirm = 2, send_file = filename_var)
