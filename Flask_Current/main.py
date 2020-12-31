@@ -5,6 +5,7 @@ import json
 from werkzeug.utils import secure_filename
 from linechart import linechart
 import cv2
+from barchart import barchart
 
 UPLOAD_FOLDER = '/Users/Kyle/Desktop/Flask_Current/static'
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -46,6 +47,12 @@ def submit_color_button_bar():
 	if request.method == 'POST':
 					filename_var = session.get('filename_var', None)
 					button = request.form["submit_button"]
+# 					image = barchart(UPLOAD_FOLDER+'/'+filename_var,color,4,50)
+# 					#input filename, color, x and y range, time range
+# 					# x axis must be time axis
+# 					bar.historecognized()
+# 					bar.LockHisto()
+# 					result = bar.producedata()
 					return render_template("Bar.html",confirm = 3, send_file =filename_var) 
 					return redirect("/bar_success")
 	filename_var = session.get('filename_var', None)
