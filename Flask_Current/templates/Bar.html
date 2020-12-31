@@ -13,6 +13,7 @@
 
 
     <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename = 'bootstrap.min.css')}}">
     <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename = 'scrolling-nav.css')}}">
     <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename = 'cover copy.css')}}">
@@ -23,31 +24,89 @@
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
-          <h3 class="masthead-brand">7th Team</h3>
+          <h3 class="masthead-brand">11-D Team</h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="http://127.0.0.1:5000/">Home</a>
-            <a class="nav-link active" href="http://127.0.0.1:5000/bar">Bar</a>
-            <a class="nav-link" href="http://127.0.0.1:5000/curve">Curve</a>
-            <a class="nav-link" href="http://127.0.0.1:5000/spotcurve">Spot Curve</a>
-            <a class="nav-link" href="http://127.0.0.1:5000/foundingteam">Founding Team</a>
+            <a class="nav-link active" href="http://127.0.0.1:5000/bar_home">Bar</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/curve_home">Curve</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/spotcurve_home">Spot Curve</a>
+            <a class="nav-link" href="http://127.0.0.1:5000/foundingteam_home">Founding Team</a>
           </nav>
         </div>
       </header>
 
       <main role="main" class="inner cover">
-        <form method="post" enctype="multipart/form-data">
-           <input type="file" name="file">
-           <input type="submit" value="submit">
+
+
+        {% if confirm == '' %} <!--上傳前介面--> 
+        <h1>Upload the photo you want to analyze! </h1>
+        <h1 style="color:white;">____________________</h1>
+        <form method="post" enctype="multipart/form-data" action="{{ url_for('submit_file_bar') }}">
+           <input type="file" name="file" value="submit_file">
+           <input type="submit" name ="file" value="Submit">
         </form>
+        {% endif %}
+
+        {% if confirm == 1 %} <!--上傳後介面--> 
+
+        <h1>This is the photo you want to analyze.</h1>
+        <img src="{{ url_for('static',filename = send_file) }}" width="600" height="400" align="middle">
+        <h1 style="color:white;">____________________</h1>
+        <form method="post" enctype = "application/x-www-form-urlencoded" action="{{ url_for('go_to_next_page_bar') }}">
+          <input type="submit" name="submit_button" value="Next Step">
+        </form>
+        {% endif %}
+
+        {% if confirm == 2 %} <!--上傳後介面--> 
+        <img src="{{ url_for('static',filename = send_file) }}" width="600" height="400" align="middle">
+        <h2>First: Decide the range of photo you want to analyze.</h2>
+        <h6 style="color:white;">____________________</h6>
+        <form method="post" enctype = "application/x-www-form-urlencoded" action="{{ url_for('submit_color_button_bar') }}">
+            <div class="form-group text-center">
+              <div class="col-12">
+                <div class="input-group mb-3">
+                  <input type="text" name="Xaxis" class="form-control" placeholder="Number of bar.  Example: 4 " aria-label="Recipient's username" aria-describedby="basic-addon2" width="600" height="400" align="middle">
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2"></span>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" name="Yaxis" class="form-control" placeholder="Value of the highest bar.  Example: 51% " aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2"></span>
+                  </div>
+                </div>
+              </div>
+        <h6 style="color:white;">____________________</h6>
+        <h2>Second: Decide the color you want to analyze.</h2>
+          <input type="submit" name="submit_button" value="black" style="background-color:black; color:white">
+          <input type="submit" name="submit_button" value="blue" style="background-color:blue; color:white">
+          <input type="submit" name="submit_button" value="purple" style="background-color:purple; color:white">
+          <input type="submit" name="submit_button" value="red" style="background-color:red; color:white">
+          <input type="submit" name="submit_button" value="orange" style="background-color:orange; color:white">
+          <input type="submit" name="submit_button" value="yellow" style="background-color:yellow; color:black">
+          <input type="submit" name="submit_button" value="green" style="background-color:green; color:white">
+        </form>
+        {% endif %}
+
+        {% if confirm == 3 %}
+        <h1>Success!</h1>
+        <h2>Below is the comparison!</h2>
+        <img src="{{ url_for('static',filename = 'bar.png') }}" width="600" height="400" align="middle">
+        <img src="{{ url_for('static',filename = 'bar_produced.png') }}" width="600" height="400" align="middle">
+        <h1 style="color:white;">____________________</h1>
+        <form method="get" action="{{ url_for('static',filename = 'blue.xlsx') }}">
+          <button class="btn" type="submit" download='blue.xlsx' ><i class="fa fa-download"></i> Download</button>
+        </form>
+        {% endif %}
       </main>
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p> <a href="https://getbootstrap.com/">Insurance Class</a>, by <a href="https://twitter.com/mdo">7th Team</a>.</p>
+          <p> <a href="https://getbootstrap.com/">Insurance Class</a>, by <a href="https://twitter.com/mdo">11-D Team</a>.</p>
         </div>
       </footer>
     </div>
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
