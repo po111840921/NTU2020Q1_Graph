@@ -14,6 +14,9 @@ def allowed_file(filename): #篩選合格的file格式
     return '.' in filename and\
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+def not_allowed_file_test(filename):
+	if ".pdf" not in filename:
+		return "Error"
 
 #函數結構：一對一 或 多對一
 @app.route("/", methods=['GET', 'POST'])
